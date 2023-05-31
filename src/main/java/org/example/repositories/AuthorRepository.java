@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthorRepository {
-    void save(Author author) throws SQLException {
+   public void save(Author author) throws SQLException {
         Connection conn = MyConnection.Getconnection();
-        String sql = "insert into Authors(AuthorID , FirstName , LastName , Age ) Values ( ? , ? , ?)";
+        String sql = "INSERT INTO Authors( FirstName , LastName , Age ) VALUES ( ? , ? , ?)";
         PreparedStatement pstatement = conn.prepareStatement(sql);
         pstatement.setString(1, author.getFirstName());
         pstatement.setString(2, author.getLastName());
@@ -20,14 +20,14 @@ public class AuthorRepository {
         conn.close();
     }
 
-    Author load(int authorId) throws SQLException {
+   public Author load(int authorId) throws SQLException {
         Connection conn = MyConnection.Getconnection();
-        String sql = "select * from Authors where AuthorId = ?";
+        String sql = "SELECT * FROM Authors WHERE AuthorId = ?";
         PreparedStatement pstatement = conn.prepareStatement(sql);
         pstatement.setInt(1, authorId);
         ResultSet resultSet = pstatement.executeQuery();
         conn.close();
-        return new Author(resultSet.getInt("AuthorId"), resultSet.getString("FirstName"),
+        return new Author( resultSet.getString("FirstName"),
                 resultSet.getString("LastName"), resultSet.getInt("Age"));
 
     }

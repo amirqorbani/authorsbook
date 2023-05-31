@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MyConnection {
     public static Connection Getconnection() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/authorsbooks" ,
-                "postgrs" , "sbu16036");
+                "postgres" , "sbu16036");
         return conn;
     }
 
